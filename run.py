@@ -36,6 +36,17 @@ async def on_message(message): # placeholder "bookmarks"
     elif message.content.startswith('!epgp'):
         await print_EPGP(client, message)
 
+def is_officer(member):
+    return (is_member_of_role(member, "Officers") or
+    is_member_of_role(member, "Starlord") or
+    is_member_of_role(member, "admin"))
+
+def is_member_of_role(member, role_name):
+    for role in member.roles:
+        if role_name == role.name:
+            return True
+    return False
+
 if __name__ == "__main__":
     '''
     Add two mutually exclusive commands, where one of the two is required for the
