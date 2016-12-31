@@ -1,0 +1,12 @@
+sudo: required
+language: python
+python:
+  - "3.5"
+services:
+  - docker
+install:
+  - docker pull jfloff/alpine-python:latest-slim
+  - docker build -t epgp-bot .
+  - docker run -td epgp-bot python3 run.py --dev
+script:
+  - docker ps | grep epgp-bot
