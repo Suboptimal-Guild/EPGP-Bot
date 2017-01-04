@@ -1,12 +1,16 @@
 sudo: required
 language: python
 python:
-  - "3.5"
+- '3.5'
 services:
-  - docker
+- docker
 install:
-  - docker pull jfloff/alpine-python:latest-slim
-  - docker build -t epgp-bot .
-  - docker run -td epgp-bot python3 run.py --dev
+- docker pull jfloff/alpine-python:latest-slim
+- docker build -t epgp-bot .
+- docker run -td -e EPGP_BOT_DEVELOPMENT_TOKEN -e EPGP_BOT_PRODUCTION_TOKEN=MjY0NjEyNzE4MDc2NjI0ODk3.C07RyQ.K0cIsGBZm1xnxLj2dD8Wy_ARYpg epgp-bot python3 run.py --dev
 script:
-  - docker ps | grep epgp-bot
+- docker ps | grep epgp-bot
+env:
+  global:
+  - secure: F7asYvNRc41Ql8td2f0clB2UAXmv6AVtWtxwPp6+2jau7q2+dUo3yX3Yhfrs+6ui5Too03vrcYYHWdU9CvhEynTLRtyIBNll2DMu6K8yjrfXqVUjXEcDHy4KXvOYrwrGAJbq6tZ8LzQ8w6gwrRMCnVIpmGbBrmbidBAWv+1zqnL9JFXHlghkEcfg0Nk+fc2nzje4jmCGZwJsUvC+QOEn9B+hwj4xEw1Tpe83UhUDy3hSYS1P+Nsr0/6TgQvWJ+msqkZtBqprkGA/6+6Y1bhyJ6oJVu9WHiJWABpMdhXX+mVxxYQxhZcxkUYod02vC3Z4neGyd49+3pNLQNjQrTTxnJACEGQdk5SgpZsgEJO0AvaoQHEmWJ3cx3Ve6oN3vwcbgXsH6TSWYNvvtonI8h0Ob3wKLFYgezDP6escnMxnQYTqjH/ALhrafg9W0rn/LtoaAh3hTvc9h9F+Tgxelu3V5ph9VmIPL+AQ6nyD5ww7N15ngXZNPU02jBAklMsfJQoqAgMDS04NVMqWp+KO9B8ZIcmJj0k5U5ottSq0i8wu75ULBUErxZUOo+BWaxxRBcB1CWxO6DnBQu7N+RruwRucNS10xdVqxy5qJT7pi4/sAC1r1wW0cPsXaUEdTX8NaHdoK3GNCmYg4UbQRVs+Dkj0tOgxYRQg6EhJeiyXthjqFAI=
+  - secure: I3sG7F7IF6OJqUMeDd+cZUVi1bXyXRKpimz2nWeZkv6NSDmtFPY0IreTAPSnK6QPxs8pRPJJBRFwZH8NHLsBJ8MABF0qdkX3BphxuSgHKy/BNgo9s0LLlqubuifIkxT4SiQ8j0+UOMILF3hUZYCR3RME6MBQX1gfB9NqOB2LvW4aaoSnkTOapQLdEt/YxYJlwUSdSGjYznc3n2h/bA55VSUmo9nodfXEAMti0GBTYkuyIK3P6JaboT2KGcjnjO85GB5s3uoHtx72XJdCkq2Vub437hmoBZ905E562+TflrMsTV9DAVgLryrkruBvQaU26GOI1f7D60GwNV/je2c16/KBLyGhLXVnJLgcm/jEzLSPqTSALmdBFklBfY/rTKspHSqWzWNHDEQmue1xnbCBQqJCFiL2gQbPPym8GiN7N3qRTGTt7G9QWg6u+MydBtFebENuUy2g+mc74pyzhNjdq0/JD9fa7jv71gQrflCyYDiuoM79A6WPDsRiXmUpjhS4TX9mHbYZErDyqlij1ydSd4KFmhRT9AK6wkF65Ke58nFgBuf1agSqE9dnuyvplNtgGn6D1uI2rTqxRWIw0Wh9LYW87uHn6LYmCO30DJm7nU/FPASbUcId369xfAmkGC6YR6T5MU3vzitSCSg5e8n3l3OxYDd/01nIOcykP+Z5BWk=
