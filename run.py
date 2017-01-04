@@ -1,18 +1,16 @@
 #!/usr/bin/python
 import argparse
-
 import discord
 import asyncio
+import os
 
 from commands.epgp import print_EPGP, print_EPGP_leaderboard, update_EPGP
 
 # Development Constants
 DEV_BOT_NAME = "김정은-Dev"
-DEV_BOT_KEY = "MjY0NjEzMjYxMzM1NDYxODg4.C0jPGA.6fAQtxok2xmysclyOoNkZrd4Lvs"
 
 # Production Constants
 PRODUCTION_BOT_NAME = "김정은"
-PRODUCTION_BOT_KEY = "MjY0NjEyNzE4MDc2NjI0ODk3.C0jPAQ.UtPRJEy1dSvyW-A7Z2Du75xtjWo"
 
 client = discord.Client()
 
@@ -36,6 +34,17 @@ async def on_message(message): # placeholder "bookmarks"
     elif message.content.startswith('!epgp'):
         await print_EPGP(client, message)
 
+def is_officer(member):
+    return (is_member_of_role(member, "Officers") or
+    is_member_of_role(member, "Starlord") or
+    is_member_of_role(member, "admin"))
+
+def is_member_of_role(member, role_name):
+    for role in member.roles:
+        if role_name == role.name:
+            return True
+    return False
+
 if __name__ == "__main__":
     '''
     Add two mutually exclusive commands, where one of the two is required for the
@@ -50,8 +59,8 @@ if __name__ == "__main__":
     client.accept_invite('https://discord.gg/mM5fXCe')
 
     if args.dev:
-        client.run(DEV_BOT_KEY)
+        client.run(os.environ['EPGP_BOT_DEVELOPMENT_TOKEN'])
     elif args.prod:
-        client.run(PRODUCTION_BOT_KEY)
+        client.run(os.environ['EPGP_BOT_PRODUCTION_TOKEN'])
     else:
         print("RIP in peace.")

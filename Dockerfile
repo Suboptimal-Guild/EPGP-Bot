@@ -4,6 +4,7 @@ FROM jfloff/alpine-python:latest-slim
 COPY /run.py /run.py
 COPY /google /google
 COPY /commands /commands
+COPY /classifications.json /classifications.json
 
 # Copy requirements file for package installation.
 COPY /requirements.txt /requirements.txt
