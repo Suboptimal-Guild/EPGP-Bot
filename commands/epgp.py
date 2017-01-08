@@ -21,8 +21,6 @@ async def print_EPGP(client, message):
     s = message.content.title().split()
     s = s[1:]
 
-    print(len(s))
-
     output = ""
 
     if len(s) > 1:
