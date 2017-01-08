@@ -7,7 +7,7 @@ services:
 install:
 - docker pull jfloff/alpine-python:latest-slim
 - docker build -t epgp-bot .
-- docker run -td -e EPGP_BOT_DEVELOPMENT_TOKEN -e EPGP_BOT_PRODUCTION_TOKEN=MjY0NjEyNzE4MDc2NjI0ODk3.C07RyQ.K0cIsGBZm1xnxLj2dD8Wy_ARYpg epgp-bot python3 run.py --dev
+- docker run -td -e EPGP_BOT_DEVELOPMENT_TOKEN -e EPGP_BOT_PRODUCTION_TOKEN epgp-bot python3 run.py --dev
 script:
 - docker ps | grep epgp-bot
 env:
